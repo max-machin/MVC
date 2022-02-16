@@ -31,5 +31,19 @@ class UsersController extends Controller
             
     }
 
+    public function register()
+    {
+        $form = new Form;
+
+        $form->startForm();
+        $form->addLabelFor('email', 'E-mail :');
+        $form->addInput('email', 'email', ['id' => 'email' ,'class' => 'form-control',]);
+        $form->addLabelFor('password', 'Mot de passe :');
+        $form->addInput('password', 'password', ['id' => 'password','class' => 'form-control']);
+        $form->addButton('S\'inscrire', ['class' => 'btn btn-primary']);
+        $form->endForm();
+
+        $this->render('users/register' , ['registerForm' => $form->create()] , 'default');
+    }
 
 }

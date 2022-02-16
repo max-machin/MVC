@@ -48,14 +48,16 @@ class Main
 
             // On instancie le controller
             $controller = new $controller();
+            var_dump($controller);
 
             // On récupère le 2ème paramètre de l'URL
             $action = (isset($params[0])) ? array_shift($params) : 'index';
-            
+        
             if(method_exists($controller, $action)){
                 //Si il reste des paramètres on les passent à la méthode
                 (isset($params[0])) ? call_user_func_array([$controller, $action], $params) : $controller->$action();
             } else {
+                header('location: index?p=');
                 echo "La page recherchée n'existe pas";
                 http_response_code(404);
                 
